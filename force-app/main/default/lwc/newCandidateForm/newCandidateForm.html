@@ -1,0 +1,87 @@
+<template>
+    <lightning-card title="Candidate Info" icon-name="standard:account">
+        <div class="slds-p-around_x-small">
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-combobox
+                            placeholder="Select option"
+                            options={options}
+                            label="Salutation" 
+                            value={rec.Salutation__c} 
+                            onchange={handleChange}
+                            ></lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="First Name" value={rec.First_Name__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="Middle Name" value={rec.Middle_Name__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="Last Name" value={rec.Last_Name__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="Gender" value={rec.Gender__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input type="Phone" label="Phone" value={rec.Phone__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="Email" value={rec.Email__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="City" value={rec.City__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-combobox
+                            placeholder="Select option"
+                            options={stateOptions}
+                            label="State" 
+                            value={rec.State__c} 
+                            onchange={handleChange}
+                            ></lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-combobox
+                            placeholder="Select option"
+                            options={countryOptions}
+                            label="Country" 
+                            value={rec.Country__c}
+                            onchange={handleCountryChange}
+                            ></lightning-combobox>
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout-item size="6" padding="around-small">
+                    <div class="slds-text-align_left">
+                        <lightning-input label="Zip Code" value={rec.Zip_Code__c} onchange={handleChange}></lightning-input>
+                    </div>
+                </lightning-layout-item>
+            </lightning-layout>
+            <br/>
+            <lightning-button variant="brand" class="slds-p-around_x-medium" label="Save" onclick={handleClick}></lightning-button>
+        </div>
+        </div>
+    </lightning-card>
+</template>

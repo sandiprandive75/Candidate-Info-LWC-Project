@@ -1,0 +1,50 @@
+<template>
+    <lightning-modal-header label={currentStepTittle}>
+        <lightning-progress-indicator current-step={currentStepTittle}>
+            <lightning-progress-step label="Candidate Info Draft Record" value="Candidate Info">
+            </lightning-progress-step>
+            <lightning-progress-step label="Candidate Spouse & Children Details" value="Candidate Spouse & Children Details">
+            </lightning-progress-step>
+            <lightning-progress-step label="Submit for approval" value="Submit for approval">
+            </lightning-progress-step>
+        </lightning-progress-indicator>
+    </lightning-modal-header>
+    <lightning-modal-body>
+        <template if:true={currentStep.Step_1}>
+            <lightning-card title="Candidate Info Record">
+                <lightning-record-form
+                    onload={onCandidateRecordLoad}
+                    object-api-name={candidateObjRef}
+                    fields={fields}
+                    record-id={candidateRecordId}
+                    columns="2">
+                </lightning-record-form>
+            </lightning-card>
+        </template>
+        <template if:true={currentStep.Step_2}>
+                <c-create-new-candidate-info-address candidate-info-id={candidateRecordId}>
+                </c-create-new-candidate-info-address>
+                <c-new-candidate-info-spouse candidate-info-id={candidateRecordId}>
+                </c-new-candidate-info-spouse>
+                <c-new-candidate-info-child candidate-info-id={candidateRecordId}>
+                </c-new-candidate-info-child>
+        </template>
+        <template if:true={currentStep.Step_3}>
+            <template if:true={showSpinner}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
+            <lightning-button variant="brand" label="Submit For Approval" onclick={submitForApproval} >
+            </lightning-button>
+            <h2>{approvalMsg}</h2>
+            <template if:true={approvalErrorMsg}>
+                <h2 style="color:red;">Error: {approvalErrorMsg}</h2>
+            </template>
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button variant="brand" label="Previous" disabled={disablePrevious} onclick={handlePrevious} >
+        </lightning-button>
+        <lightning-button variant="brand" label="Next" disabled={disableNext} onclick={handleNext} >
+        </lightning-button>
+    </lightning-modal-footer>
+</template>

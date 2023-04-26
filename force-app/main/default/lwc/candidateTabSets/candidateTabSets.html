@@ -1,0 +1,16 @@
+<template>
+    <lightning-tabset variant="scoped">
+        <lightning-tab class="slds-box" label="New Application Request">
+            <c-hello-world-comp></c-hello-world-comp>
+        </lightning-tab>
+        <lightning-tab class="slds-box" label="Pending Request" title="2nd tab extended title">
+            <c-pending-candidate-requests></c-pending-candidate-requests>
+        </lightning-tab>
+        <lightning-tab class="slds-box" label="Approved Requests" title="2nd tab extended title">
+            <c-candidate-approved-requests></c-candidate-approved-requests>
+        </lightning-tab>
+        <lightning-tab class="slds-box" label="Rejected Requests">
+            <c-candidate-rejected-requests></c-candidate-rejected-requests>
+        </lightning-tab>
+    </lightning-tabset>
+</template>

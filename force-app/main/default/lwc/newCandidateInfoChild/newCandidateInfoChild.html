@@ -1,0 +1,190 @@
+<template>
+    <c-custom-toast auto-close-time="8000"></c-custom-toast>
+    <lightning-card title="Candidate Child Info">
+        <div if:true={errorMessage} style="margin-left: 3%;">
+            <p style="color: red;">{errorMessage}</p>
+        </div>
+        <table style="width:100%;" class="fixed slds-table slds-table_bordered">
+            <thead>
+                    <tr style="border:1px black solid">
+                        <th>Salutation</th>
+                        <th>First Name</th>
+                        <!-- <th>Middle Name</th> -->
+                        <th>Last Name</th>
+                        <!-- <th>Gender</th> -->
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Relation</th>
+                        <!-- <th>City</th>
+                        <th>State</th>-->
+                        <th>Country</th>
+                        <th>Zip Code</th> 
+                        <th style="width:15%;">Actions</th>
+                    </tr>
+            </thead>
+            <tbody>
+                <template for:each={tableData} for:item="data" for:index="index">
+                    <tr key={data.dataIndex}>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Salutation__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:80px"
+                                options={salutationPicklist}
+                                onchange={handleSalutationChange}
+                                value={data.Salutation__c}>
+                            </lightning-combobox>
+                            </template>
+                        </td>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.First_Name__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="text" 
+                                            value={data.First_Name__c} 
+                                            onchange={handleFNameChange}>
+                                </lightning-input>
+                            </template>
+                        </td>
+                        <!-- <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Middle_Name__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="text" 
+                                            value={data.Middle_Name__c} 
+                                            onchange={handleMNameChange}>
+                                </lightning-input>
+                            </template>
+                        </td> -->
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Last_Name__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="text" 
+                                            value={data.Last_Name__c} 
+                                            onchange={handleLNameChange}>
+                                </lightning-input>
+                            </template>
+                        </td>
+                        <!-- <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Gender__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:100px"
+                                options={genderPicklist} 
+                                onchange={handleGenderChange}
+                                value={data.Gender__c}>
+                            </lightning-combobox>
+                            </template>
+                        </td> -->
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Email__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="email" 
+                                style="width:80px"
+                                            value={data.Email__c} 
+                                            onchange={handleEmailChange}>
+                                </lightning-input>
+                            </template>
+                        </td>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Phone__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="tel" 
+                                style="width:80px"
+                                            value={data.Phone__c} 
+                                            onchange={handlePhoneChange}>
+                                </lightning-input>
+                            </template>
+                        </td>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Relation__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:80px"
+                                    options={relationPicklist} 
+                                    onchange={handleRelationChange}
+                                    value={data.Relation__c}>
+                                </lightning-combobox>
+                            </template>
+                        </td>
+                        <!-- <td>
+                            <template if:false={data.rowEditable}>
+                                {data.City__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:100px"
+                                    options={cityPicklist} 
+                                    onchange={handleCityChange}
+                                    value={data.City__c}>
+                                </lightning-combobox>
+                            </template>
+                        </td>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.State__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:100px"
+                                    options={statePicklist} 
+                                    onchange={handleStateChange}
+                                    value={data.State__c}>
+                                </lightning-combobox>
+                            </template>
+                        </td>-->
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Country__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-combobox
+                                style="width:65px"
+                                    options={countryPicklist} 
+                                    onchange={handleCountryChange}
+                                    value={data.Country__c}>
+                                </lightning-combobox>
+                            </template>
+                        </td>
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                {data.Zip_Code__c}
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-input  type="text" value={data.Zip_Code__c} onchange={handleZipChange}>
+                                </lightning-input>
+                            </template>
+                        </td> 
+                        <td>
+                            <template if:false={data.rowEditable}>
+                                <lightning-button-icon onclick={handleEditClick} icon-name="utility:edit" data-index={index}    alternative-text="Edit" title="Edit"></lightning-button-icon>
+                                <lightning-button-icon alternative-text="Delete" icon-name="utility:delete" data-id={data.dataIndex} onclick={deleteRow}></lightning-button-icon>
+                                <lightning-button-icon onclick={addRow} alternative-text="Add" icon-name="utility:add" data-id={data.dataIndex}></lightning-button-icon>
+                            </template>
+                            <template if:true={data.rowEditable}>
+                                <lightning-button label="Save" onclick={handleSaveClick} data-index={index}>
+                                </lightning-button>
+                                <lightning-button label="Cancel" onclick={handleCancelClick} data-index={index}>
+                                </lightning-button>
+                            </template>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </lightning-card>
+</template>
